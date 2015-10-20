@@ -10,7 +10,7 @@ const onTransitionEnd = window.onTransitionEnd;
 const element = document.getElementById('transitioning-element');
 const expectedDuration = 1000;
 
-// promise:
+// callback:
 onTransitionEnd(element, expectedDuration, () => console.log('done'));
 
 // promise:
