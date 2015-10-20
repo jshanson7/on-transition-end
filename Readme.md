@@ -3,7 +3,7 @@
 Cross-browser `transtionEnd` event listener:
 
 ```javascript
-import onTransitionEnd from 'onTransitionEnd';
+import onTransitionEnd from 'on-transition-end';
 // or
 const onTransitionEnd = window.onTransitionEnd;
 
@@ -32,7 +32,7 @@ console.log('done');
 npm install on-transition-end
 ```
 
-Then reference either `dist/on-transition-end.js` or `dist/on-transition-end.min.js` in your html, or `import 'on-transition-end'`.  If a module environment is not detected, `onTransitionEnd` will be exported to `window.onTransitionEnd`.
+Then reference either `dist/on-transition-end.js` or `dist/on-transition-end.min.js` in your html, or import `on-transition-end`.  If a module environment is not detected, `onTransitionEnd` will be exported to `window.onTransitionEnd`.
 
 ## Contributing
 
