@@ -1,7 +1,7 @@
 {
   "name": "on-transition-end",
   "description": "Cross-browser `transtionEnd` event listener.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "keywords": [
     "transtionend",
     "ontransitionend",
