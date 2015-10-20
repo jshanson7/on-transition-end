@@ -1,6 +1,5 @@
 import $ from 'jquery';
 import { random, sample, omit } from 'lodash';
-import Color from 'color';
 import colors from 'material-colors';
 import prefix from 'prefix-property';
 import onTransitionEnd from '../../';
@@ -31,12 +30,14 @@ $('body').append($demoEl);
 setTimeout(transitionLoop, 1000);
 
 function transitionLoop() {
-  $demoEl.css('left', random(document.documentElement.offsetWidth - elSize));
-  $demoEl.css('top', random(document.documentElement.offsetHeight - elSize));
-  $demoEl.css('backgroundColor', randomColor());
+  $demoEl.css({
+    left: random(document.documentElement.offsetWidth - elSize),
+    top: random(document.documentElement.offsetHeight - elSize),
+    backgroundColor: randomColor()
+  });
   onTransitionEnd($demoEl[0], transitionDuration, transitionLoop);
 }
 
 function randomColor() {
-  return new Color(sample(sample(omit(colors, 'white', 'black')))).rgbString();
+  return sample(sample(omit(colors, 'white', 'black')));
 }

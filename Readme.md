@@ -24,7 +24,7 @@ console.log('done');
 ```
 
 ## Demo
-[https://rawgit.com/jshanson7/on-transition-end/master/demo/index.html](https://rawgit.com/jshanson7/on-transition-end/master/demo/index.html)
+[http://codepen.io/jshanson7/pen/avEZry?editors=001](http://codepen.io/jshanson7/pen/avEZry?editors=001)
 
 ## Installation
 
