@@ -1,7 +1,7 @@
 {
   "name": "on-transition-end",
-  "description": "Cross-browser `transtionEnd` event listener.",
-  "version": "1.0.4",
+  "description": "Cross-browser `transtionend` event listener.",
+  "version": "1.0.5",
   "keywords": [
     "transtionend",
     "ontransitionend",
@@ -9,7 +9,7 @@
     "event",
     "listener"
   ],
-  "main": "dist/on-transition-end",
+  "main": "dist/on-transition-end.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/jshanson7/on-transition-end"
@@ -29,7 +29,7 @@
     "mocha": "^2.3.3",
     "mocha-loader": "^0.7.1",
     "parallelshell": "^2.0.0",
-    "prefix-property": "^1.0.18",
+    "prefix-property": "^1.0.19",
     "uglifyjs": "^2.4.10",
     "watch": "^0.16.0",
     "webpack": "^1.12.2"

@@ -1,6 +1,6 @@
 # On Transition End [![NPM version][npm-image]][npm-url] [![Build status][travis-image]][travis-url]
 
-Cross-browser `transtionEnd` event listener:
+Cross-browser `transtionend` event listener:
 
 ```javascript
 import onTransitionEnd from 'on-transition-end';
