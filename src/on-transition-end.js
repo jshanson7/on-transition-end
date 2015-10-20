@@ -1,19 +1,17 @@
 import prefixProperty from 'prefix-property';
 
 const defaultEventFailureGracePeriod = 100;
-const transitionEndEvent = {
-  transition: 'transitionend',
-  OTransition: 'otransitionend',
-  MozTransition: 'transitionend',
-  WebkitTransition: 'webkitTransitionEnd'
-}[prefixProperty('transition')];
 
-export default (element, expectedDuration, callback, failureGracePeriod) =>
+export default (element, expectedDuration, callback, eventFailureGracePeriod) =>
   new Promise(resolve => {
+    const transitionend = getTransitionEndEvent();
+    const gracePeriod = eventFailureGracePeriod !== undefined ?
+      eventFailureGracePeriod :
+      defaultEventFailureGracePeriod;
     let done = false;
     let forceEnd = false;
 
-    element.addEventListener(transitionEndEvent, onTransitionEnd);
+    element.addEventListener(transitionend, onTransitionEnd);
 
     setTimeout(() => {
       if (!done) {
@@ -21,14 +19,25 @@ export default (element, expectedDuration, callback, failureGracePeriod) =>
         forceEnd = true;
         onTransitionEnd();
       }
-    }, expectedDuration + (failureGracePeriod || defaultEventFailureGracePeriod));
+    }, expectedDuration + gracePeriod);
 
     function onTransitionEnd(e) {
       if (forceEnd || e.target === element) {
         done = true;
-        element.removeEventListener(transitionEndEvent, onTransitionEnd);
+        element.removeEventListener(transitionend, onTransitionEnd);
         resolve(e);
         if (callback) { callback(e); }
       }
     }
   });
+
+const getTransitionEndEvent = (() => {
+  let transitionEndEvent = null;
+  return () =>
+    transitionEndEvent || (transitionEndEvent = ({
+      transition: 'transitionend',
+      OTransition: 'otransitionend',
+      MozTransition: 'transitionend',
+      WebkitTransition: 'webkitTransitionEnd'
+    })[prefixProperty('transition')]);
+})();

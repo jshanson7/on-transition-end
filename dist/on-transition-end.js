@@ -76,19 +76,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _prefixProperty2 = _interopRequireDefault(_prefixProperty);
 
 	var defaultEventFailureGracePeriod = 100;
-	var transitionEndEvent = ({
-	  transition: 'transitionend',
-	  OTransition: 'otransitionend',
-	  MozTransition: 'transitionend',
-	  WebkitTransition: 'webkitTransitionEnd'
-	})[(0, _prefixProperty2['default'])('transition')];
 
-	exports['default'] = function (element, expectedDuration, callback, failureGracePeriod) {
+	exports['default'] = function (element, expectedDuration, callback, eventFailureGracePeriod) {
 	  return new _Promise(function (resolve) {
+	    var transitionend = getTransitionEndEvent();
+	    var gracePeriod = eventFailureGracePeriod !== undefined ? eventFailureGracePeriod : defaultEventFailureGracePeriod;
 	    var done = false;
 	    var forceEnd = false;
 
-	    element.addEventListener(transitionEndEvent, onTransitionEnd);
+	    element.addEventListener(transitionend, onTransitionEnd);
 
 	    setTimeout(function () {
 	      if (!done) {
@@ -96,12 +92,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        forceEnd = true;
 	        onTransitionEnd();
 	      }
-	    }, expectedDuration + (failureGracePeriod || defaultEventFailureGracePeriod));
+	    }, expectedDuration + gracePeriod);
 
 	    function onTransitionEnd(e) {
 	      if (forceEnd || e.target === element) {
 	        done = true;
-	        element.removeEventListener(transitionEndEvent, onTransitionEnd);
+	        element.removeEventListener(transitionend, onTransitionEnd);
 	        resolve(e);
 	        if (callback) {
 	          callback(e);
@@ -111,6 +107,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	  });
 	};
 
+	var getTransitionEndEvent = (function () {
+	  var transitionEndEvent = null;
+	  return function () {
+	    return transitionEndEvent || (transitionEndEvent = ({
+	      transition: 'transitionend',
+	      OTransition: 'otransitionend',
+	      MozTransition: 'transitionend',
+	      WebkitTransition: 'webkitTransitionEnd'
+	    })[(0, _prefixProperty2['default'])('transition')]);
+	  };
+	})();
 	module.exports = exports['default'];
 
 /***/ },

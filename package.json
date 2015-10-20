@@ -42,7 +42,7 @@
     "test-browser": "open test/test.html",
     "test-node": "node_modules/.bin/mocha test/test",
     "test-node-watch": "node_modules/.bin/watch 'npm run test-node' test src",
-    "build": "npm run webpack && node_modules/.bin/parallelshell 'npm run webpack-test' 'npm run webpack-demo' 'npm run uglify'",
+    "build": "npm run webpack && npm run uglify && node_modules/.bin/parallelshell 'npm run webpack-test' 'npm run webpack-demo'",
     "build-watch": "node_modules/.bin/parallelshell 'npm run webpack-watch' 'npm run webpack-test-watch' 'npm run webpack-demo-watch'",
     "webpack": "node_modules/.bin/webpack",
     "webpack-watch": "npm run webpack -- --watch",
